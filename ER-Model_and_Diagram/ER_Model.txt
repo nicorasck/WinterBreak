@@ -1,0 +1,93 @@
+================================================================================
+Hospital Management System:
+    - This is a management system based on (but, with enhances, indeed)
+    https://www.geeksforgeeks.org/how-to-design-er-diagram-for-a-hospital-management-system/
+    - This will be implemented in VSCODE with C# .NET (Entity Framework).
+
+=================================== ER-MODEL ===================================
+
+Entities and Attributes:
+
+    Employee:
+    - EmployeeID (PK, NOT NULL)                     -- Each employee is unique.
+    - AddressID (FK, NOT NULL)                      -- References to the entity of Address.
+    - FirstName (VARCHAR, NOT NULL)                 -- First Name.
+    - LastName (VARCHAR, NOT NULL)                  -- Last Name.
+    - BirthYear (DATE, NOT NULL)                    -- Birth Year (DateOnly in C#).
+    - Gender (ENUM, NOT NULL)                       -- BC there are several of Genders. 
+    - PinCode (VARCHAR, NOT NULL)                   -- To get access in the Hospital System.  
+    - Salary (INT, NOT NULL)                        -- To show the salary each Employee has.
+    - WorkTitle (ENUM, NOT NULL)                    -- BC there are several of Work Titles.
+
+    Patient:
+    - PatientID (PK, NOT NULL)                      -- Each patient is unique.
+    - RoomID (FK, NOT NULL)                         -- References to the entity of Room.
+    - FirstName (VARCHAR, NOT NULL)                 -- First Name.
+    - LastName (VARCHAR, NOT NULL)                  -- Last Name.
+    - BirthYear (DATE, NOT NULL)                    -- Birth Year (DateOnly in C#).
+    - Gender (ENUM, NOT NULL)                       -- BC there are several of Genders. 
+    - EmergencyContactName (VARCHAR, NOT NULL)      -- Emergency Contact Name.
+    - EmergencyContactNumber (VARCHAR, NOT NULL)    -- Emergency Contact Number.
+
+    Address:
+    - AddressID (PK, NOT NULL)                      -- Each address is unique.
+    - PhoneNumber (VARCHAR, NOT NULL)               -- Phone Number.
+    - Email (VARCHAR, NOT NULL)                     -- Email.
+    - Street (VARCHAR, NOT NULL)                    -- Street name and number.
+    - ZipCode (VARCHAR, NOT NULL)                   -- Zip Code / Postal Code.
+    - City (VARCHAR, NOT NULL)                      -- City.
+    - State (VARCHAR, NULL)                         -- If it is applicable.
+    - Country (VARCHAR, NOT NULL)                   -- Country.
+
+    Room:
+    - RoomID (PK, NOT NULL)                         -- Each room is unique.
+    - RoomType (VARCHAR, NOT NULL)                  -- If there is a private room and so on.
+    - RoomCapacity (INT, NOT NULL)                  -- How many patients it can be in each room.
+    - RoomIsAvailable (BOOLEAN) (DEFAULT TRUE)      -- If the room ia available or not.
+
+    RoomPatient:
+    - RoomID (FK, NOT NULL)                         -- References to the entity of Room.
+    - PatientID (FK, NOT NULL)                      -- References to the entity of Patient.
+    - AdmissionDate (DATE, NOT NULL)                -- What Date the room was occupied.
+    - DischargeDate (DATE, NOT NULL)                -- What Date the room was discharged.
+
+    TestReport:
+    - TestReportID (PK, NOT NULL)                   -- Each Test Report is unique.
+    - RoomID (FK, NOT NULL)                         -- References to the entity of Room. 
+    - PatientID (FK, NOT NULL)                      -- References to the entity of Patient.
+    - RecordID (FK, NOT NULL)                       -- References to the entity of Record.
+    - TestType (VARCHAR, NOT NULL)                  -- What sort of test it is.
+    - TestResult (VARCHAR, NOT NULL)                -- The result.
+
+    Invoice:
+    - InvoiceID (PK, NOT NULL)                      -- Each Invoice is unique.
+    - PatientID (FK, NOT NULL)                      -- References to entity of patients.
+    - DateIssued (DATE, NOT NULL)                   -- When the Invoice/Bill was sent/created.
+    - PaymentStatus (ENUM, NOT NULL)                -- Using Enum, there are several of status.
+    - Amount (INT, NOT NULL)                        -- Amount each Patient has to pay.
+
+    Record:
+    - TestReportID (FK, NOT NULL)                   -- References to the entity of TestReport.
+    - RecordNumber (INT, NOT NULL)                  -- Every record book has some number for each patient.
+    - AppBookNumber (INT, NOT NULL)                 -- Every app book has some number for each patient.
+
+
+================================ ER-RELATIONSHIP ===============================
+
+Employee and Address
+    One-to-One                      Shared AddressID.
+
+Patient and Room
+    Many-to-One                     Via RoomID.
+
+Room and RoomPatient
+    One-to-Many                     For room-patient mapping.
+
+TestReport and Patient
+    Many-to-One
+
+Invoice and Patient
+    Many-to-One
+
+Record and TestReport
+    One-to-One

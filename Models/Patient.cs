@@ -7,14 +7,13 @@ namespace Models
     public class Patient
     {
         public int PatientID {get; set;}    // Primary Key
+        public int RoomID {get; set;}       // Foreign Key => references the entity of Room. 
+        public int AddressID {get; set;}    // Foreign Key => references the entity of Address.
         public required string FirstName {get; set;}
         public required string LastName {get; set;}
         public required DateOnly BirthYear {get; set;}
-        public required string Gender {get; set;}
-        public required string PhoneNumber {get; set;}  // not necessary to be an integer!
-        public string Email {get; set;} // not necessary with an E-mail
-        public required string Street {get; set;}
-        public required string ZipCode {get; set;}
-        public required string City {get; set;}
+        public required Gender Gender {get; set;}       // Enum is used bc there are several of genders.
+        public required string EmergencyContactName {get; set;}
+        public required string EmergencyContactNumber {get; set;}
     }
 }

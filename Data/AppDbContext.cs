@@ -11,12 +11,12 @@ public class AppDbContext : DbContext
     public DbSet<Room> Rooms {get; set;}                // a list to store Rooms.
     public DbSet<Reception> Receptions {get; set;}      // a list tot store which employee will be in the reception.
     public DbSet<TestReport> TestReports {get; set;}    // a list to store TestReports.
-    public DbSet<Record> Records {get; set;}            //  a list to store Records (journals).
     public DbSet<Invoice> Invoices {get; set;}          // a list to store Invoices.
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        // The name of the DataBse is called "WinterBreak_HospitalSystem".
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WinterBreak_HospitalSystem;Trusted_Connection=True;");
     }
 
