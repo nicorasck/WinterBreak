@@ -8,7 +8,7 @@ namespace Models
     {
         Male = 1, Female, Queer, NonBinary, TheyThem, Transgender, Other
     }
-    public class Address
+    public class Address    // Normalizing for Employee and Patient.
     {
         public int AddressID {get; set;}                // each address is unique
         public required string PhoneNumber {get; set;}

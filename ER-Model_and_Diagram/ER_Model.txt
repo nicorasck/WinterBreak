@@ -22,6 +22,7 @@ Entities and Attributes:
     Patient:
     - PatientID (PK, NOT NULL)                      -- Each patient is unique.
     - RoomID (FK, NOT NULL)                         -- References to the entity of Room.
+    - AddressID (FK, NOT NULL)                      -- References to the entity of Address.
     - FirstName (VARCHAR, NOT NULL)                 -- First Name.
     - LastName (VARCHAR, NOT NULL)                  -- Last Name.
     - BirthYear (DATE, NOT NULL)                    -- Birth Year (DateOnly in C#).
@@ -29,7 +30,7 @@ Entities and Attributes:
     - EmergencyContactName (VARCHAR, NOT NULL)      -- Emergency Contact Name.
     - EmergencyContactNumber (VARCHAR, NOT NULL)    -- Emergency Contact Number.
 
-    Address:
+    Address:                                        -- Normalizing for Employee and Patient.
     - AddressID (PK, NOT NULL)                      -- Each address is unique.
     - PhoneNumber (VARCHAR, NOT NULL)               -- Phone Number.
     - Email (VARCHAR, NOT NULL)                     -- Email.
