@@ -4,15 +4,14 @@ using Models;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<Patient> Patients {get; set;}           // a list to store Patients.
-    public DbSet<Employee> Employees {get; set;}         // a list to store Employees.
-    public DbSet<Doctor> Doctors {get; set;}             // a list to store Doctors.
-    public DbSet<Nurse> Nurses {get; set;}              // a list to store Nurses.
-    public DbSet<Room> Rooms {get; set;}                // a list to store Rooms.
-    public DbSet<Reception> Receptions {get; set;}      // a list tot store which employee will be in the reception.
-    public DbSet<TestReport> TestReports {get; set;}    // a list to store TestReports.
-    public DbSet<Invoice> Invoices {get; set;}          // a list to store Invoices.
-
+    public DbSet<Employee> Employees {get; set;}            // A list to stor Employees.
+    public DbSet<Patient> Patients {get; set;}              // A list to store Patients.
+    public DbSet<Address> Addresses {get; set;}             // A list to store Addresses.
+    public DbSet<Room> Rooms {get; set;}                    // A list to store Rooms.
+    public DbSet<RoomPatient> RoomPatients {get; set;}      // A list to sore RoomPatients.
+    public DbSet<TestReport> TestReports {get; set;}        // A list to store TestReports.
+    public DbSet<Invoice> Invoices {get; set;}              // A list to store Invoices.
+    public DbSet<Record> Records {get; set;}                // A list to Store Records.
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
