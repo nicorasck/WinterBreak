@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public enum Gender
+    public enum Gender // Refers to Class for Employee and Patient.
     {
         Male = 1, Female, Queer, NonBinary, TheyThem, Transgender, Other
     }

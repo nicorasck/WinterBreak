@@ -15,7 +15,7 @@ namespace Models
         public required string FirstName {get; set;}
         public required string LastName {get; set;}
         public required DateOnly BirthYear {get; set;}
-        public required Gender Gender {get; set;}       // Enum is used bc there are several of genders.
+        public required Gender Gender {get; set;}       // Enum is used bc there are several of genders (see class for Address).
         public int PinCode {get; set;}                  // pin code (to get access in hospital system)
         public required int Salary {get; set;}
         public required WorkTitle WorkTitle {get; set;} // Enum is used here, to rang the titles.

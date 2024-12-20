@@ -4,6 +4,13 @@ Hospital Management System:
     https://www.geeksforgeeks.org/how-to-design-er-diagram-for-a-hospital-management-system/
     - This will be implemented in VSCODE with C# .NET (Entity Framework).
 
+    This system will organize data for hospital and with clear structure for the relationships.
+    It will be enabling efficient data retrieval and scalability which will support key
+    functionalities like management for employees, care of patients, assignments for rooms,
+    test reports and payments.
+
+    - Please find purposes for each entity below NOTES.
+
 =================================== ER-MODEL ===================================
 
 Entities and Attributes:
@@ -14,7 +21,7 @@ Entities and Attributes:
     - FirstName (VARCHAR, NOT NULL)                 -- First Name.
     - LastName (VARCHAR, NOT NULL)                  -- Last Name.
     - BirthYear (DATE, NOT NULL)                    -- Birth Year (DateOnly in C#).
-    - Gender (ENUM, NOT NULL)                       -- BC there are several of Genders. 
+    - Gender** (ENUM, NOT NULL)                     -- BC there are several of Genders. 
     - PinCode (VARCHAR, NOT NULL)                   -- To get access in the Hospital System.  
     - Salary (INT, NOT NULL)                        -- To show the salary each Employee has.
     - WorkTitle (ENUM, NOT NULL)                    -- BC there are several of Work Titles.
@@ -26,7 +33,7 @@ Entities and Attributes:
     - FirstName (VARCHAR, NOT NULL)                 -- First Name.
     - LastName (VARCHAR, NOT NULL)                  -- Last Name.
     - BirthYear (DATE, NOT NULL)                    -- Birth Year (DateOnly in C#).
-    - Gender (ENUM, NOT NULL)                       -- BC there are several of Genders. 
+    - Gender** (ENUM, NOT NULL)                     -- BC there are several of Genders. 
     - EmergencyContactName (VARCHAR, NOT NULL)      -- Emergency Contact Name.
     - EmergencyContactNumber (VARCHAR, NOT NULL)    -- Emergency Contact Number.
 
@@ -72,23 +79,71 @@ Entities and Attributes:
     - RecordNumber (INT, NOT NULL)                  -- Every record book has some number for each patient.
     - AppBookNumber (INT, NOT NULL)                 -- Every app book has some number for each patient.
 
+================================================================================
+
+NOTES:
+** The Enum for Gender is placed in Address.cs (both Employee and Patient do have Gender).
+
+
+Purpose:
+
+    Employee
+        -   Get details from hospital staff and their work titles (roles).
+        -   Keeping information centralized such information in the entity of Address.
+
+    Patient
+        -   Assignments for rooms and details from patients.
+        -   Connecting patients to an address (to the entity of Address).
+
+    Address
+        -   To avoid duplication this is normalized for Employee and Patient (the entities).
+        -   Easier to update address data.
+    
+    Room
+        -   Managing the availability of rooms.
+    
+    RoomPatient
+        -   Managing a relationship Many-to-One between Room and Patient. A Room can have more than
+            one patient at the time and a patient cannot be in more than one room at the time.
+            A person can also share room with one or more patients.
+        -   Logging historical data for room assignments.
+    
+    TestReport
+        -   Managing test reports for patients.
+        -   Connecting test reports to patients and records.
+    
+    Invoice
+        -   Managing payments.
+    
+    Record
+        -   Centralizing documentation for tests.
+        -   Ensures traceability of interactions for patients with the hospital system.
 
 ================================ ER-RELATIONSHIP ===============================
 
 Employee and Address
-    One-to-One                      Shared AddressID.
+    One-to-One                      Each employee do has a unique address stored in the entity
+                                    of Address.
+
+Patient and Address
+    One-to-One                      Each patient do has a unique address stored in the entity
+                                    of Address.
 
 Patient and Room
-    Many-to-One                     Via RoomID.
+    Many-to-One                     Via RoomID. A Room can have several of patients.
 
 Room and RoomPatient
-    One-to-Many                     For room-patient mapping.
+    One-to-Many                     For room-patient mapping. A room can have several of patients.
+                                    It can be tracked through the entity of RoomPatient with 
+                                    AdmissionDate and DischargeDate.
 
 TestReport and Patient
-    Many-to-One
+    Many-to-One                     A Patient can have several of test reports and each test reports
+                                    is only linked to one patient.
 
 Invoice and Patient
-    Many-to-One
+    Many-to-One                     A Patient can have several of invoices/payments and each invoices
+                                    is only linked to one Patent.
 
 Record and TestReport
-    One-to-One
+    One-to-One                      Each test report is documented in a unique record.

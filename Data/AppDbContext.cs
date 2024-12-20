@@ -15,7 +15,7 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // The name of the DataBse is called "WinterBreak_HospitalSystem".
+        // The name of the DataBase is called "WinterBreak_HospitalSystem".
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WinterBreak_HospitalSystem;Trusted_Connection=True;");
     }
 

@@ -12,7 +12,7 @@ namespace Models
         public required string FirstName {get; set;}
         public required string LastName {get; set;}
         public required DateOnly BirthYear {get; set;}
-        public required Gender Gender {get; set;}       // Enum is used bc there are several of genders.
+        public required Gender Gender {get; set;}       // Enum is used bc there are several of genders (see class for Address).
         public required string EmergencyContactName {get; set;}
         public required string EmergencyContactNumber {get; set;}
     }

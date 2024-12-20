@@ -11,6 +11,6 @@ namespace Models
         public int PatientID {get; set;}                // Foreign Key => references to the entity of Patient
         public int RecordID {get; set;}                 // Foreign Key => references to the entity of Record.
         public required string TestType {get; set;}     // What sort of test it is
-        public required string TestResult {get; set;}
+        public required string TestResult {get; set;}   // Showing the result.
     }
 }
