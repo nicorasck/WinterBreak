@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class RoomPatient
+    public class Consultation
     {
         public int RoomID {get; set;}                       // Foreign Key => references to the entity o Room.
         public int PatientID {get; set;}                    // Foreign Key => references to the entity of Patent.

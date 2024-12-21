@@ -51,13 +51,9 @@ Entities and Attributes:
     - RoomID (PK, NOT NULL)                         -- Each room is unique.
     - RoomType (VARCHAR, NOT NULL)                  -- If there is a private room and so on.
     - RoomCapacity (INT, NOT NULL)                  -- How many patients it can be in each room.
-    - RoomIsAvailable (BOOLEAN) (DEFAULT TRUE)      -- If the room ia available or not.
-
-    RoomPatient:
-    - RoomID (FK, NOT NULL)                         -- References to the entity of Room.
-    - PatientID (FK, NOT NULL)                      -- References to the entity of Patient.
+    - IsAvailable (BOOLEAN) (DEFAULT TRUE)          -- If the room ia available or not.
     - AdmissionDate (DATE, NOT NULL)                -- What Date the room was occupied.
-    - DischargeDate (DATE, NOT NULL)                -- What Date the room was discharged.
+    - DischargeDate (DATE, NOT NULL)                -- What Date the room was discharged.         
 
     TestReport:
     - TestReportID (PK, NOT NULL)                   -- Each Test Report is unique.
@@ -67,6 +63,26 @@ Entities and Attributes:
     - TestType (VARCHAR, NOT NULL)                  -- What sort of test it is.
     - TestResult (VARCHAR, NOT NULL)                -- The result.
 
+    Visit:
+    - VisitID (PK, NOT NULL)                        -- Each Visit is unique.
+    - PatientID (FK, NOT NULL)                      -- References to the entity of Patient.
+    - Consultation (FK, NOT NULL)                   -- References to the entity of Consultation.
+    - InvoiceID (FK, NOT NULL)                      -- References to the entity of Invoice.
+    - EmployeeID (FK, NOT NULL)                     -- References to the entity of Employee.
+    - VisitDate (DATE, NOT NULL)                    -- What Date and Time the Patient is coming.
+    - BookingDate (DATE, NULL)                      -- If, a consultation was booked.
+    - VisitReason (VARCHAR, NOT NULL)               -- What reason the Patient is visiting.
+
+    Consultation:
+    - ConsultationID (PK, NOT NULL)                 -- Each consultation is unique.
+    - PatientID (FK, NOT NULL)                      -- References to the entity of Patient.
+    - RoomID (FK, NOT NULL)                         -- References to the entity of Room.
+    - RecordID (FK, NOT NULL)                       -- References to the entity of Record.
+    - EmployeeID (FK, NOT NULL)                     -- References to the entity of Employee.
+    - ConsultationType (ENUM, NOT NULL)             -- Using Enum. What sort of consultation it is.
+    - ConsultationDate (DATE, NOT NULL)             -- What Date and Time the consultation was.
+    - Notes (VARCHAR, NULL)                         -- If there are any other notes to add.
+
     Invoice:
     - InvoiceID (PK, NOT NULL)                      -- Each Invoice is unique.
     - PatientID (FK, NOT NULL)                      -- References to entity of patients.
@@ -75,6 +91,7 @@ Entities and Attributes:
     - Amount (INT, NOT NULL)                        -- Amount each Patient has to pay.
 
     Record:
+    - RecordID (PK, NOT NULL)
     - TestReportID (FK, NOT NULL)                   -- References to the entity of TestReport.
     - RecordNumber (INT, NOT NULL)                  -- Every record book has some number for each patient.
     - AppBookNumber (INT, NOT NULL)                 -- Every app book has some number for each patient.
@@ -101,12 +118,12 @@ Purpose:
     
     Room
         -   Managing the availability of rooms.
+
+    Visit
+        -   
     
-    RoomPatient
-        -   Managing a relationship Many-to-One between Room and Patient. A Room can have more than
-            one patient at the time and a patient cannot be in more than one room at the time.
-            A person can also share room with one or more patients.
-        -   Logging historical data for room assignments.
+    Consultation 
+        -   
     
     TestReport
         -   Managing test reports for patients.
@@ -132,10 +149,14 @@ Patient and Address
 Patient and Room
     Many-to-One                     Via RoomID. A Room can have several of patients.
 
-Room and RoomPatient
-    One-to-Many                     For room-patient mapping. A room can have several of patients.
-                                    It can be tracked through the entity of RoomPatient with 
-                                    AdmissionDate and DischargeDate.
+Visit and Consultation 
+    Many-to-One                     
+
+Consultation and Employee
+    Many-to-One
+
+Visit and Employee
+    Many-to-One
 
 TestReport and Patient
     Many-to-One                     A Patient can have several of test reports and each test reports
