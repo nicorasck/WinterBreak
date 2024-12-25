@@ -120,11 +120,13 @@ Purpose:
         -   Managing the availability of rooms.
 
     Visit
-        -   
-    
+        -   Logging date of visit including the reason of visit but also details for booking,
+            association with invoice and consultation. 
+
     Consultation 
-        -   
-    
+        -   Managing consultations => linking them to doctors, rooms, and records.
+        -   Includes consultation details like type, date, and notes.
+
     TestReport
         -   Managing test reports for patients.
         -   Connecting test reports to patients and records.
@@ -149,14 +151,14 @@ Patient and Address
 Patient and Room
     Many-to-One                     Via RoomID. A Room can have several of patients.
 
-Visit and Consultation 
-    Many-to-One                     
+Visit and Consultation              
+    Many-to-One                     Connects patient visits with consultations.   
 
 Consultation and Employee
-    Many-to-One
-
+    Many-to-One                     Links consultations to specific employees (doctors, nurses).
+    
 Visit and Employee
-    Many-to-One
+    Many-to-One                     An employee can have more than one visit, but only one at the time.
 
 TestReport and Patient
     Many-to-One                     A Patient can have several of test reports and each test reports

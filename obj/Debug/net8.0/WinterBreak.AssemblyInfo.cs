@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinterBreak")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b49799181ddb1eb9b5d3f1ecddfc1e59dd315e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfe689466189076df27dcdfd179c67c3fa2c4573")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinterBreak")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinterBreak")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
