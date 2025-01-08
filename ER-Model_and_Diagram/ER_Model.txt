@@ -49,7 +49,7 @@ Entities and Attributes:
 
     Room:
     - RoomID (PK, NOT NULL)                         -- Each room is unique.
-    - RoomType (VARCHAR, NOT NULL)                  -- If there is a private room and so on.
+    - RoomType (ENUM, NOT NULL)                     -- If there is a private room and so on. 
     - RoomCapacity (INT, NOT NULL)                  -- How many patients it can be in each room.
     - IsAvailable (BOOLEAN) (DEFAULT TRUE)          -- If the room ia available or not.
     - AdmissionDate (DATE, NOT NULL)                -- What Date the room was occupied.

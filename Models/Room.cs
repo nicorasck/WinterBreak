@@ -11,8 +11,10 @@ namespace Models
     public class Room
     {
         public int RoomID {get; set;}                  // Primary Key => each room must be unique
-        public required string RoomType {get; set;}    // each room must describe what sort of room it is (Enum)
+        public required RoomType RoomType {get; set;}   // Using Enum
         public required int RoomCapacity {get; set;}   // How many patients it can be in the room at the same tome
         public bool IsAvailable {get; set;}        // default should be True
+        public required DateTime AdmissionDate {get; set;}
+        public required DateTime DischargeDate {get; set;}
     }
 }

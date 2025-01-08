@@ -10,10 +10,10 @@ namespace Models
     }
     public class Invoice
     {
-        public int InvoiceID {get; set;}                    // Primary Key, each Invoice is unique.
-        public int PatientID {get; set;}                    // Foreign Key => references the entity of Patient.
-        public required DateTime DateIssued {get; set;}     // When the Invoice/Bill was sent/created.
-        public required string PaymentStatus {get; set;}    // Using enum for this.
-        public int Amount {get; set;}                       // The Amount each Patient has to pay.
+        public int InvoiceID {get; set;}                            // Primary Key, each Invoice is unique.
+        public int PatientID {get; set;}                            // Foreign Key => references the entity of Patient.
+        public required DateTime DateIssued {get; set;}             // When the Invoice/Bill was sent/created.
+        public required PaymentStatus PaymentStatus {get; set;}     // Using enum for this.
+        public int Amount {get; set;}                               // The Amount each Patient has to pay.
     }
 }
